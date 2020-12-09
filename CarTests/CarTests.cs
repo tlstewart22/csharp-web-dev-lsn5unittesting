@@ -33,13 +33,20 @@ namespace CarTests
             test_car.Drive(50);
             Assert.AreEqual(9, test_car.GasTankLevel, .001);
         }
+        //TODO: gasTankLevel is accurate after attempting to drive past tank range
         [TestMethod]
         public void TestGasTankExceedingTankRange()
         {
             test_car.Drive(501);
-            Assert.AreNotEqual(501, test_car.Odometer, .001);
+            Assert.AreNotEqual(-1, test_car.GasTankLevel, .001);
         }
-
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void TestGasOverfillException()
+        {
+            test_car.AddGas(5);
+            Assert.Fail("Shouldn't get here, the car cannot have more gas in tank than the size of the tank");
+        }
         [TestCleanup]
         public void CleanupAfterTest()
         {
@@ -47,7 +54,7 @@ namespace CarTests
             test_car = null;
         }
 
-        //TODO: gasTankLevel is accurate after attempting to drive past tank range
+
         //TODO: can't have more gas than tank size, expect an exception
 
     }
