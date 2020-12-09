@@ -8,11 +8,11 @@ namespace CarTests
     public class CarTests
     {
         //TODO: add emptyTest so we can configure our runtime environment (remove this test before pushing to your personal GitHub account)
-        [TestMethod]
-        public void EmptyTest()
-        {
-            Assert.AreEqual(10, 10, .001);
-        }
+        //[TestMethod]
+        //public void EmptyTest()
+        //{
+        //    Assert.AreEqual(10, 10, .001);
+        //}
         //TODO: constructor sets gasTankLevel properly
         Car test_car;
         [TestInitialize]
@@ -40,6 +40,7 @@ namespace CarTests
             test_car.Drive(501);
             Assert.AreNotEqual(-1, test_car.GasTankLevel, .001);
         }
+        //TODO: can't have more gas than tank size, expect an exception
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestGasOverfillException()
@@ -55,7 +56,7 @@ namespace CarTests
         }
 
 
-        //TODO: can't have more gas than tank size, expect an exception
+
 
     }
 }
